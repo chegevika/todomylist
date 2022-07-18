@@ -1,0 +1,370 @@
+<!DOCTYPE html />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Использование событий</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Dancing+Script:wght@600&family=Grape+Nuts&family=Indie+Flower&family=Playfair+Display:wght@700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+<style>
+*{
+    padding: 0;
+    margin: 0;
+    color:rgba(118, 6, 247, 0.911);
+    font-family: 'Bad Script', cursive;
+
+}
+body {
+    background: url(../projects/spisok_del/тетрадь.png);
+    background-size: cover;
+    font-family: 'Bad Script', cursive;
+    color:rgba(118, 6, 247, 0.911);
+
+}
+.tabs {
+    display:flex;
+    flex-direction: column;
+    width:100vw;
+}
+.tabs__nav{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    border-radius: 30px;
+    padding:10px 5px;
+    margin-bottom: 20px;
+    background-color: #d9c08f; 
+}
+.tablinks{
+    margin: 0 5px;
+    padding: 7px 20px;
+    border-radius: 20px;
+    cursor:pointer;
+    transition: .5s;
+    background-color: #e4dccc;
+}
+
+.tab{
+    box-shadow: opx 4px 5px rgba(75, 74, 74, 0.1);
+    border-radius: 25px;
+    padding:30px;
+    position:relative;
+}
+.tab button:hover {
+  background-color: rgb(247, 247, 247);}
+  
+.tab button.active {
+  background-color: rgb(255, 255, 255);
+}
+.task {
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+    padding: 3px 8px;
+    margin: 2px 120px;
+}
+
+.task p {
+    margin-left: 4px;
+}
+
+.completed p{
+    text-decoration: line-through;
+}
+.input-panel {
+    width: 500px;
+    padding: 70px;
+    margin-left: 37%;
+   
+}
+.input-panel button{
+    padding: 4px;
+    width:25%;
+    cursor: pointer;
+}
+.input-panel input{
+    height: 40px;
+    width: auto;
+}
+
+h1{
+    font-size: 3rem;
+}
+p{
+    font-size: 2rem;   
+}
+#start-message{
+    margin-left: 40%;
+    margin-top: -2%;
+}
+.end_button{
+    background-color: #dbc089; 
+    border-radius: 10%;
+    margin-left:45%;
+    margin-top: 5%;
+    text-align: center;
+    text-decoration: none;
+  display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+.tabcontent {
+  animation: fadeEffect 1s;
+}
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+#Vt, #Sr, #Chetv, #Pyatn, #Subb, #Vs {
+display: none;
+}
+.delete-task {
+	display: inline-block;
+	background: #e74c3c;
+	width: 0;
+	height: 40px;
+	margin-right: 20px;
+	text-align: center;
+	color: #ffffff;
+	cursor: pointer;
+	transition: 0.2s linear;
+	opacity: 0;
+}
+.task:hover .delete-task {
+	width: 40px;
+	opacity: 1;
+}
+</style>
+</head>
+
+<body>
+    <div class="title">
+        <h1 align = "center"> Твой список дел на неделю</h1>
+         <p align = "center">Бери с собой, пиши и вычеркивай</p>
+     </div>
+<div class="tab">
+         <div class="tabs__nav">
+             <button class="tablinks" id="tabs__name" onclick="openDay(event,'Pn')">Понедельник</button>
+             <button class="tablinks" id="tabs__name"onclick="openDay(event,'Vt')">Вторник</button>
+             <button class="tablinks" id="tabs__name"onclick="openDay(event,'Sr')">Среда</button>
+              <button class="tablinks"id="tabs__name" onclick="openDay(event,'Chetv')">Четверг</button>
+             <button class="tablinks" id="tabs__name"onclick="openDay(event,'Pyatn')">Пятница</button>
+             <button class="tablinks" id="tabs__name"onclick="openDay(event,'Subb')">Суббота</button>
+             <button class="tablinks" id="tabs__name"onclick="openDay(event,'Vs')">Воскресенье</button>
+             </div>
+    </div>
+<!--  Понедельник     -->
+    <div id="Pn" class="tabcontent">
+    <h2 class="tabs__title" align="center"> Мои дела в понедельник:</h2>
+    <div class="input-panel">
+        <input type="text" id="task-name-input" placeholder="Название задачи..." title="1) cоставить список задач">
+       
+        <button id="add-task-btn">Добавить задачу</button>
+    </div>
+   
+    <div class="task-list">
+        <p id="start-message">Нет новых дел. Выходной.</p>  
+    </div>
+    <div class="end_button">Очистить список задач</div>
+    </div>
+<!--  Вторник    -->
+    <div id="Vt" class="tabcontent">
+     <h2 class="tabs__title" align="center"> Мои дела во вторник:</h2>
+     
+     <div class="input-panel">
+        <input type="text" id="task-name-input" placeholder="Название задачи..." title="1) cоставить список задач">
+        
+        <button id="add-task-btn">Добавить задачу</button>
+    </div>
+   
+    <div class="task-list">
+        <p id="start-message">Нет новых дел. Выходной.</p>  
+    </div>
+    <div class="end_button">Очистить список задач</div>
+    
+     </div>
+<!--  Среда    -->
+    <div id="Sr" class="tabcontent">
+    <h2 class="tabs__title" align="center"> Мои дела в среду:</h2>
+    <div class="input-panel">
+        <input type="text" id="task-name-input" placeholder="Название задачи..." title="1) cоставить список задач">
+        
+        <button id="add-task-btn">Добавить задачу</button>
+    </div>
+   
+    <div class="task-list">
+        <p id="start-message">Нет новых дел. Выходной.</p>  
+    </div>
+    <div class="end_button">Очистить список задач</div>
+    </div>
+<!--  Четверг   -->
+    <div id="Chetv" class="tabcontent">
+        <h2 class="tabs__title" align="center"> Мои дела в четверг:</h2>
+        <div class="input-panel">
+            <input type="text" id="task-name-input" placeholder="Название задачи..." title="1) cоставить список задач">
+            
+            <button id="add-task-btn">Добавить задачу</button>
+        </div>
+       
+        <div class="task-list">
+            <p id="start-message">Нет новых дел. Выходной.</p>  
+        </div>
+        <div class="end_button">Очистить список задач</div>
+        </div>
+<!--  Пятница   -->
+    <div id="Pyatn" class="tabcontent">
+    <h2 class="tabs__title" align="center"> Мои дела в пятницу:</h2>
+    <div class="input-panel">
+        <input type="text" id="task-name-input" placeholder="Название задачи..." title="1) cоставить список задач">
+        
+        <button id="add-task-btn">Добавить задачу</button>
+    </div>
+   
+    <div class="task-list">
+        <p id="start-message">Нет новых дел. Выходной.</p>  
+    </div>
+    <div class="end_button">Очистить список задач</div>
+    </div>
+<!--  Суббота   -->
+    <div id="Subb" class="tabcontent">
+    <h2 class="tabs__title" align="center"> Мои дела в субботу:</h2>
+    <div class="input-panel">
+        <input type="text" id="task-name-input" placeholder="Название задачи..." title="1) cоставить список задач">
+        
+        <button id="add-task-btn">Добавить задачу</button>
+    </div>
+   
+    <div class="task-list">
+        <p id="start-message">Нет новых дел. Выходной.</p>  
+    </div>
+    <div class="end_button">Очистить список задач</div>
+    </div>
+<!--  Воскресенье   -->
+   <div id="Vs" class="tabcontent">
+    <h2 class="tabs__title" align="center"> Мои дела в вокресенье:</h2>
+    <div class="input-panel" >
+        <input type="text" id="task-name-input" placeholder="Название задачи..." title="1) cоставить список задач">
+        
+        <button id="add-task-btn">Добавить задачу</button>
+    </div>
+   
+    <div class="task-list">
+        <p id="start-message">Нет новых дел. Выходной.</p>  
+    </div>
+    <div class="end_button">Очистить список задач</div>
+    </div>
+           
+    
+
+    <script>
+
+// пишем скрипт на табы 
+function openDay(event, dayName) {
+let i, tabcontent, tablinks;
+
+tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+// переключаем табы
+tablinks = document.getElementsByClassName("tablinks");
+for (i = 0; i < tablinks.length; i++) {
+tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+document.getElementById(dayName).style.display = "block";
+event.currentTarget.className += " active";
+}
+
+
+// загружаем задачи в локал стор.
+
+if(localStorage['.task-list']) {
+	$(".task-list").append(localStorage['.task-list']);
+} 
+
+
+// пишем скрипт на список задач
+let taskNameInput = document.querySelector('#task-name-input'); // находим поле ввода задачи
+let addTaskButton = document.querySelector('#add-task-btn');  // добавляет задачу
+let endButton = document.querySelector('.end_button');  // кнопка, которая будет удалять задачи
+
+let startMessage = document.querySelector('#start-message');
+let taskList = document.querySelector('.task-list'); // создаем переменную, в которой находятся задания, к которым будет добавляться навые задания
+
+
+addTaskButton.addEventListener('click', addTaskHandler); // addTaskHandler добавляет задачу
+
+// делаем функционал на нажатье Escape
+taskNameInput.addEventListener('keydown', function(e){
+if(e.code == "Enter") addTaskHandler();
+})
+
+// добавляем задачу с чекбоксом
+function createTask(text){
+    let div = document.createElement('div');
+    div.classList.add('task');
+    
+
+let input = document.createElement('input');
+    input.addEventListener('click', changeTaskState);
+    input. type = 'checkbox';
+
+
+
+let p = document.createElement('p');
+    p.innerText = text;
+
+    div.append(input);
+    div.append(p);
+
+    return div;
+    }
+
+// если задача выполнена по чекбоксу, вычеркиваем стилем "completed"
+function changeTaskState(e){
+        if(e.target.nodeName != 'input' && e.target.type != 'checkbox'){
+            return;
+        }
+
+        if(e.target.checked){
+            e.target.parentElement.classList.add("completed");  // если чекбокс с галочкой, добавляем класс completed для родительского єлемента
+        } else {
+            e.target.parentElement.classList.remove("completed"); // иначе убираем класс completed
+        }
+        localStorage['.task-list'] = $('.task-list').html(); // обновляем задачи в хранилище
+    } 
+  
+
+    function addTaskHandler(){
+
+        if (taskNameInput.value) {  // если текст в поле введен
+            if (!startMessage.hidden) startMessage.hidden = true;
+
+        let newTask = createTask(taskNameInput.value);
+        taskList.append(newTask); // прилепляем внизу задачу
+        taskNameInput.value = '';
+    } else{  // если поле ввода пустое
+        alert('Введите новую задачу');
+    }
+}
+
+// делаем функционал на удаление всех задач
+endButton.addEventListener('click', clearall);
+function clearall(){
+taskList.remove(); 
+clearall();  }
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
+
